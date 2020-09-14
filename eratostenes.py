@@ -2,30 +2,7 @@
 # Criba de Eratóstenes para práctica de python
 
 
-
-def presenta():
-    print
-    print("Criba de Eratóstenes")
-    print("====================")
-    print
-
-
-    
-def preguntaNumero():
-    while True:
-        print
-        num = raw_input("Escribe entero mayor que 0: ")
-        try:
-            numero = int(num)
-            if numero > 2:
-                return numero
-            else:
-                print("Tiene que ser mayor que 2")
-        except:
-            print("Eso no es un número")
-
-
-def eratostenes(n):
+def eratostenes(n, verbose=False):
     primo = 2
     indice = 0
     numPrimos = []
@@ -42,24 +19,21 @@ def eratostenes(n):
                 primo = serie[i]
                 indice += 1
                 break
-
+    contador = 0
     for i in range(n - 1):
         if serie[i] <> 0:
             numPrimos.append(serie[i])
-    print numPrimos
+            contador += 1
+
+    print
+    print("Criba de Eratóstenes")
+    print("====================")
+    if verbose:
+        print numPrimos
+    print("Números primos menores que {}: {}".format(n, contador))
+    print("Mayor primo menor que {}: {}".format(n, numPrimos[-1]))
+    print
+    
+    
     
 
-    
-def main():
-    salir = False
-    p = 2
-    while not salir:
-        presenta()
-        entero = preguntaNumero()
-        eratostenes(entero)
-        respuesta = raw_input("Deseas salir? (S/N): ")
-        if respuesta == "s" or respuesta == "S":
-            salir = True
-            
-if __name__ == "__main__":
-    main()
